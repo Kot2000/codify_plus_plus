@@ -1,0 +1,8 @@
+[package]
+name = "csqrl/codify-lib"
+version = "0.1.0"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+
+[dependencies]
+Packager = "csqrl/packager@0.1.3"
