@@ -53,7 +53,10 @@ end
 local function codify(
 	root: Instance,
 	config: {
-		generator: { [string]: any },
+		generator: {
+    language: Serializer.Language,
+    generate: (package: Types.SerializedPackage) -> string,
+  },
 		userFormats: Serializer.UserFormats?,
 		caseFormat: formatCase.CaseFormat?,
 	}
@@ -105,9 +108,7 @@ local function codify(
 		end
 	end
 
-	-- local package = convertToPackage(flatpack)
 	local package = Packager:ConvertToPackage(flatpack)
-	print("package>", package)
 	return config.generator.generate(package)
 end
 
