@@ -7,7 +7,7 @@
 <!-- Content -->
 # CodifyLib
 
-An open source implementation of the [Codify plugin][codify-devforum]'s internal "Instance-to-snippet" conversion module.
+A decoupled implementation of the [Codify plugin][codify-devforum]'s internal "Instance-to-snippet" conversion module.
 
 -----
 
