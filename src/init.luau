@@ -7,5 +7,6 @@ return {
 	Generators = Generators,
 	Serializer = Serializer,
 
-	codify = codify,
+	codify = codify.codify,
+	setPackager = codify.setPackager,
 }

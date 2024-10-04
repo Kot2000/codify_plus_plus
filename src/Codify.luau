@@ -25,6 +25,18 @@ local function getPackagerHandle()
 	return packager
 end
 
+local function setPackagerHandle(packager)
+	if typeof(packager) ~= "table" then
+		error(`"{packager}" ({typeof(packager)}) is not a valid Packager instance.`)
+	end
+
+	if not packager.CreatePackageFlat or not packager.ConvertToPackage then
+		error('Packager is missing the "CreatePackageFlat" and "ConvertToPackage" methods.')
+	end
+
+	_packagerHandle = packager
+end
+
 local function isIgnoredProperty(className: string, propertyName: string)
 	if table.find(IGNORED_PROPERTIES.global, propertyName) then
 		return true
@@ -54,9 +66,9 @@ local function codify(
 	root: Instance,
 	config: {
 		generator: {
-    language: Serializer.Language,
-    generate: (package: Types.SerializedPackage) -> string,
-  },
+			language: Serializer.Language,
+			generate: (package: Types.SerializedPackage) -> string,
+		},
 		userFormats: Serializer.UserFormats?,
 		caseFormat: formatCase.CaseFormat?,
 	}
@@ -109,7 +121,10 @@ local function codify(
 	end
 
 	local package = Packager:ConvertToPackage(flatpack)
-	return config.generator.generate(package)
+	return config.generator.generate(package :: any)
 end
 
-return codify
+return {
+	codify = codify,
+	setPackager = setPackagerHandle,
+}

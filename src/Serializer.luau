@@ -333,11 +333,11 @@ local function formatColorSequence(_format: ColorSequenceFormat, userFormats: Us
 			local timeValue = formatNumber(keypoint.Time)
 
 			if lang == "jsx" then
-				table.insert(keypoints, `\tnew ColorSequenceKeypoint({keypointValue}, {timeValue})`)
+				table.insert(keypoints, `\tnew ColorSequenceKeypoint({timeValue}, {keypointValue})`)
 				continue
 			end
 
-			table.insert(keypoints, `\tColorSequenceKeypoint.new({keypointValue}, {timeValue})`)
+			table.insert(keypoints, `\tColorSequenceKeypoint.new({timeValue}, {keypointValue})`)
 		end
 
 		local keypointsString = table.concat(keypoints, ",\n")
@@ -364,14 +364,14 @@ local function formatNumberSequence(_format: NumberSequenceFormat, _userFormats:
 				if lang == "jsx" then
 					table.insert(
 						keypoints,
-						`\tnew NumberSequenceKeypoint({keypointValue}, {timeValue})`
+						`\tnew NumberSequenceKeypoint({timeValue}, {keypointValue})`
 					)
 					continue
 				end
 
 				table.insert(
 					keypoints,
-					`\tNumberSequenceKeypoint.new({keypointValue}, {timeValue})`
+					`\tNumberSequenceKeypoint.new({timeValue}, {keypointValue})`
 				)
 				continue
 			end
@@ -379,14 +379,14 @@ local function formatNumberSequence(_format: NumberSequenceFormat, _userFormats:
 			if lang == "jsx" then
 				table.insert(
 					keypoints,
-					`\tnew NumberSequenceKeypoint({keypointValue}, {timeValue}, {envelopeValue})`
+					`\tnew NumberSequenceKeypoint({timeValue}, {keypointValue}, {envelopeValue})`
 				)
 				continue
 			end
 
 			table.insert(
 				keypoints,
-				`\tNumberSequenceKeypoint.new({keypointValue}, {timeValue}, {envelopeValue})`
+				`\tNumberSequenceKeypoint.new({timeValue}, {keypointValue}, {envelopeValue})`
 			)
 		end
 

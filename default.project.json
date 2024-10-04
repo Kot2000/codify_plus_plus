@@ -1,7 +1,7 @@
 {
   "name": "CodifyLib",
   "tree": {
-    "$path": "src",
+    "$path": "build",
     "Packages": {
       "$path": "Packages"
     }
